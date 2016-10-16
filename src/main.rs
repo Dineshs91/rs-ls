@@ -9,11 +9,14 @@ fn main() {
     let mut file_count = 0;
 
     println!("total  {}", files_count);
+
     for file in files {
         file_count += 1;
         let file_path = file.unwrap().path();
+
         let mut file_path_display = file_path.display().to_string();
         let mut file_size = file_path.metadata().unwrap().len().to_string();
+
         let file_permissions = file_path.metadata().unwrap().permissions().readonly();
         let file_modified = file_path.metadata().unwrap().modified().unwrap();
 
@@ -21,10 +24,10 @@ fn main() {
         format_display(& mut file_size, 6);
 
         println!("{}   {}   {}   {:?}   {:?}", file_count.to_string().green(),
-         file_path_display.yellow().bold(),
-         file_size,
-         file_permissions,
-         file_modified
+           file_path_display.yellow().bold(),
+           file_size,
+           file_permissions,
+           file_modified
         )
     }
 }
