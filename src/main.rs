@@ -27,7 +27,7 @@ fn main() {
         let mut file_size = file_path.metadata().unwrap().len().to_string();
 
         let file_modified = file_path.metadata().unwrap().modified().unwrap().duration_since(UNIX_EPOCH).unwrap().as_secs();
-        let dt = Local.timestamp(file_modified as i64, 0);
+        let file_modified_dt = Local.timestamp(file_modified as i64, 0);
 
         format_display(& mut file_path_display, 15);
         format_display(& mut file_size, 6);
@@ -35,7 +35,7 @@ fn main() {
         println!("{}   {}  {}  {}", file_count.to_string().green(),
            file_path_display.yellow().bold(),
            file_size,
-           dt.format("%h %d %H:%M")
+           file_modified_dt.format("%h %d %H:%M")
         )
     }
 }
